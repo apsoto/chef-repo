@@ -42,6 +42,9 @@ end
 
 load 'chef/tasks/chef_repo.rake'
 
+# load local rake tasks
+Dir[File.join(File.dirname(__FILE__), "config", "tasks", "*.rake")].each {|taskfile| load taskfile }
+
 desc "Bundle a single cookbook for distribution"
 task :bundle_cookbook => [ :metadata ]
 task :bundle_cookbook, :cookbook do |t, args|

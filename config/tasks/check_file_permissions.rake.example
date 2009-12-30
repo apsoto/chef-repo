@@ -1,0 +1,18 @@
+# system dependency on sudo and chef user existing
+# The chef-server runs as user chef, however you likely are root
+# when you 'rake update' or 'rake install'.  If the files are
+# not readable by the chef user then the server will not be able to 
+# serve the file because it isn't readable.
+
+desc "Test that chef can serve the static files in your repository"
+task :test_file_permissions do |t,args|
+  files = Dir["site-cookbooks/**/files/**/**"].reject{|path| File.directory?(path)}
+  problem_files = files.reject do |path|  
+    system("sudo -u chef head -n 1 #{path} &>  /dev/null")
+  end
+
+  unless problem_files.empty?
+    msg = "The following files have permissions that would prevent the chef server from reading/serving them to clients:\n" + problem_files.join("\n")
+    raise msg
+  end
+end
