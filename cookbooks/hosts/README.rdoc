@@ -1,0 +1,40 @@
+= DESCRIPTION:
+Manage /etc/hosts.
+
+= REQUIREMENTS:
+A node attribute named *hosts/localhost_aliases* if other aliases for 127.0.0.1 are desired.
+A data bag named *hosts* if other host entries are desired
+
+= ATTRIBUTES:
+
+[localhost_aliases]   An array of strings of other names for 127.0.0.1
+
+= DATABAG ENTRIES:
+
+[entries]             A Hash of ip_address to string or array of hostnames
+
+= USAGE:
+
+*localhost_aliases*
+$ knife node edit NODE
+{ 
+  "hosts" : {
+    "localhost_aliases" : [ "localhost2", "localhost3" ]
+  }
+}
+
+
+*entries*
+$ knife data bag create hosts entries
+
+{
+  "id": "entries",
+  "value": {
+    "10.0.0.1": "node1.example.com",
+    "10.0.0.2": [
+      "service1.example.com",
+      "service2.example.com"
+    ]
+  }
+}
+
