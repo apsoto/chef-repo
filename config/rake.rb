@@ -3,7 +3,7 @@
 ###
 
 # The company name - used for SSL certificates, and in srvious other places
-COMPANY_NAME = "Example Com"
+COMPANY_NAME = "Alex Soto <apsoto@gmail.com>"
 
 # The Country Name to use for SSL Certificates
 SSL_COUNTRY_NAME = "US"
@@ -18,7 +18,7 @@ SSL_LOCALITY_NAME = "Locality"
 SSL_ORGANIZATIONAL_UNIT_NAME = "Operations"
 
 # The SSL contact email address
-SSL_EMAIL_ADDRESS = "ops@example.com"
+SSL_EMAIL_ADDRESS = "apsoto@gmail.com"
 
 # License for new Cookbooks
 # Can be :apachev2 or :none
